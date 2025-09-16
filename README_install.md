@@ -10,13 +10,43 @@ Engine • hash 6cd51c08a88e7bbe848a762c20ad3ecb8b063c0e (revision 1e9a811bf8) (
 Tools • Dart 3.9.0 • DevTools 2.48.0
 ```
 
+#### 编辑依赖
+
+在项目根目录的 pubspec.yaml 文件中，找到 dependencies: 部分，添加你需要的包，比如：
+
+```
+dependencies:
+  flutter:
+    sdk: flutter
+
+  dio: ^5.4.0
+  shared_preferences: ^2.2.2
+```
+
+#### 安装依赖
+
+```
+flutter clean
+flutter pub get
+
+```
+
+#### 更新依赖
+
+```
+flutter pub upgrade
+
+```
+
 #### 构建应用
 
 ```
 ·]>>  cd FlutterUnit
 
-Build Android:
-·]>>  flutter build apk --target-platform --split-per-abi
+Build Android 不分包:
+·]>>  flutter build apk
+Build Android 分包:
+·]>>  flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
 Build iOS:
 ·]>>  flutter build ios
 Build Windows:
