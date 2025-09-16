@@ -48,5 +48,8 @@ class AppL10nKo extends AppL10n {
   String get news => '최신 소식';
 
   @override
+  String get mobileTabMessages => 'MQTT';
+
+  @override
   String get moreNews => '더 보기';
 }

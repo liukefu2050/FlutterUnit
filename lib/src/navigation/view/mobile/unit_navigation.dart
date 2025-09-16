@@ -13,6 +13,7 @@ import 'package:treasure_tools/treasure_tools.dart';
 import 'package:widget_module/blocs/blocs.dart';
 import 'package:widget_module/widget_module.dart';
 import 'package:note/note.dart';
+import 'package:mqtt/mqtt.dart';
 import 'news.dart';
 import 'pure_bottom_bar.dart';
 
@@ -64,7 +65,8 @@ class _UnitPhoneNavigationState extends State<UnitPhoneNavigation> {
           StandardHomePage(heard: NewsHeader()),
           GalleryUnit(),
           AlgoScope(child: ArtifactPage()),
-          ArtSysScope(child: MobileArticlePage()),
+          //ArtSysScope(child: MobileArticlePage()), // note 模块
+          MqttSysScope(child: MobileMqttPage()),
           // MobileToolPage(),
           UserPage(),
         ],

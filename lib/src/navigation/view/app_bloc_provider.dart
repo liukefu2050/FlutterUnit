@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:widget_module/widget_module.dart';
 
+import 'package:mqtt/mqtt.dart';
+
 /// create by 张风捷特烈 on 2020/4/28
 /// contact me by email 1981462002@qq.com
 /// 说明: Bloc提供器包裹层
@@ -34,6 +36,8 @@ class _AppBlocProviderState extends State<AppBlocProvider> {
             create: (_) => UpgradeBloc(api: UnitUpgradeApi())),
         BlocProvider<UserBloc>(create: (_) => UserBloc()),
         BlocProvider<NewsBloc>(create: (_) => NewsBloc()..initByCache()),
+
+        BlocProvider<MqttBloc>(create: (_) => MqttBloc()),
 
         BlocProvider<GalleryUnitBloc>(
             create: (_) => GalleryUnitBloc()..loadGalleryInfo()),

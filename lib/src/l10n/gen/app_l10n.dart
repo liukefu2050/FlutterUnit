@@ -191,6 +191,12 @@ abstract class AppL10n {
   /// **'最新资讯'**
   String get news;
 
+  /// No description provided for @mobileTabMessages.
+  ///
+  /// In zh, this message translates to:
+  /// **'MQTT'**
+  String get mobileTabMessages;
+
   /// No description provided for @moreNews.
   ///
   /// In zh, this message translates to:

@@ -9,6 +9,7 @@ import 'system/settings.dart';
 import 'widgets/collection_route.dart';
 import 'widgets/widgets_route.dart';
 import 'package:note/note.dart';
+import 'mqtt/mqtt_route.dart';
 
 RouteBase get appRoute {
   List<RouteBase> body = [
@@ -16,6 +17,7 @@ RouteBase get appRoute {
     noteRoute,
     collectRoute,
     settingsRoute,
+    mqttRoute,
     GoRoute(
       path: AppRoute.moreNews.path,
       builder: (ctx, __) => NewsPage(

@@ -48,5 +48,8 @@ class AppL10nJa extends AppL10n {
   String get news => '最新情報';
 
   @override
+  String get mobileTabMessages => 'MQTT';
+
+  @override
   String get moreNews => 'もっと見る';
 }

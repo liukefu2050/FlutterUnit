@@ -15,6 +15,8 @@ enum AppRoute {
   painter('painter', url: '/painter'),
   knowledge('knowledge', url: '/knowledge'),
   tools('tools', url: '/tools'),
+  messsages('messsages', url: '/messsages'),
+  messsagesDetail('messsages/:name', url: '/messsages/detail/'),
 
   /// user/app
   aboutApp('about_app', url: '/about_app'),

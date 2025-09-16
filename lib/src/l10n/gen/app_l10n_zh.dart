@@ -48,5 +48,8 @@ class AppL10nZh extends AppL10n {
   String get news => '最新资讯';
 
   @override
+  String get mobileTabMessages => 'MQTT';
+
+  @override
   String get moreNews => '查看更多';
 }

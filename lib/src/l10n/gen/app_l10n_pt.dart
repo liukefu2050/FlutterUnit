@@ -48,5 +48,8 @@ class AppL10nPt extends AppL10n {
   String get news => 'Novidades';
 
   @override
+  String get mobileTabMessages => 'MQTT';
+
+  @override
   String get moreNews => 'Mais novidades';
 }

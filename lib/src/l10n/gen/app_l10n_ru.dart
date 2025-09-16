@@ -48,5 +48,8 @@ class AppL10nRu extends AppL10n {
   String get news => 'Новости';
 
   @override
+  String get mobileTabMessages => 'MQTT';
+
+  @override
   String get moreNews => 'Больше новостей';
 }

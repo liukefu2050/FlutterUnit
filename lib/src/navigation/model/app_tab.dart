@@ -10,6 +10,7 @@ enum AppTab {
   knowledge('/knowledge', TolyIcon.icon_artifact),
   painter('/painter', TolyIcon.dingzhi1),
   tools('/tools', TolyIcon.icon_fast),
+  messages('/messages', TolyIcon.icon_fast),
   mine('/account', TolyIcon.yonghu);
 
   final IconData icon;
@@ -19,7 +20,8 @@ enum AppTab {
     widgets,
     painter,
     knowledge,
-    note,
+    //note,
+    messages,
     mine
   ];
 
@@ -32,6 +34,7 @@ enum AppTab {
         AppTab.painter => l10n.deskTabPainter,
         AppTab.knowledge => l10n.deskTabKnowledge,
         AppTab.tools => l10n.deskTabTools,
+        AppTab.messages => l10n.mobileTabMessages,
         AppTab.mine => l10n.deskTabMine,
         AppTab.note => l10n.messageBoard,
       };
@@ -41,6 +44,7 @@ enum AppTab {
       AppTab.painter => l10n.mobileTabPainter,
       AppTab.knowledge => l10n.mobileTabKnowledge,
       AppTab.tools => l10n.mobileTabTools,
+      AppTab.messages => l10n.mobileTabMessages,
       AppTab.mine => l10n.mobileTabMine,
       AppTab.note => l10n.messageBoard,
     };

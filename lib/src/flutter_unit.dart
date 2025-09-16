@@ -10,6 +10,7 @@ import 'package:tolyui/app/toly_ui.dart';
 import 'package:widget_module/widget_module.dart';
 import 'package:widget_module/blocs/blocs.dart';
 import 'package:note/note.dart';
+import 'package:mqtt/mqtt.dart';
 import 'l10n/gen/app_l10n.dart';
 import 'l10n/locale_provider.dart';
 import 'navigation/router/app_route.dart';
