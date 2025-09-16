@@ -7,7 +7,7 @@ class UserHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    String image = isDark?'anim_draw.webp':'base_draw.webp';
+    String image = isDark ? 'anim_draw.webp' : 'base_draw.webp';
 
     return Stack(
       // clipBehavior: Clip.none,
@@ -23,7 +23,7 @@ class UserHeader extends StatelessWidget {
             Container(
               alignment: Alignment.topLeft,
               padding: EdgeInsets.only(left: 32 + 100 + 16, top: 12),
-              color: isDark?Color(0xff2C3036):Colors.white,
+              color: isDark ? Color(0xff2C3036) : Colors.white,
               height: 86,
               child: Row(
                 children: [
@@ -31,16 +31,16 @@ class UserHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '张风捷特烈',
+                        '上海鼎宏网络科技',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '海的彼岸有我未曾见证的风采',
+                        'XXXXXXXXX',
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                       Text(
-                        '公众号@编程之王',
+                        'XXXXXXXXX',
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                     ],

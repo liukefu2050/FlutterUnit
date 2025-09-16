@@ -8,7 +8,7 @@ import 'package:l10n/l10n.dart';
 class StrUnit {
   // 小文字大小
   static const String version = 'V3.2.2';
-  static const String appName = 'Flutter Unit';
+  static const String appName = '智能工业互联网';
 
   static String galleryDesc(BuildContext context) => """
 [

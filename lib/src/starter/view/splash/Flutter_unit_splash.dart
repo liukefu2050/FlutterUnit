@@ -74,8 +74,8 @@ class _SplashBody extends StatelessWidget {
                   alignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
-                    Text("Power By 张风捷特烈", style: shadowStyle),
-                    Text("· 2025 ·  @编程之王 ", style: shadowStyle),
+                    Text("Power By 上海鼎宏网络科技", style: shadowStyle),
+                    Text("· 2025 ·  @上海鼎宏网络科技 ", style: shadowStyle),
                   ],
                 )),
           ],

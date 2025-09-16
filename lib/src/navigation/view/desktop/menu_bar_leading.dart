@@ -36,7 +36,7 @@ class MenuBarLeading extends StatelessWidget {
                 ),
               ),
               const Text(
-                '张风捷特烈',
+                '上海鼎宏网络科技',
                 style: TextStyle(color: Colors.white70),
               )
             ],
@@ -50,11 +50,9 @@ class MenuBarLeading extends StatelessWidget {
   }
 
   final List<LinkIconMenu> menus = const [
-    LinkIconMenu(
-        TolyIcon.icon_github, "https://github.com/toly1994328/FlutterUnit"),
-    LinkIconMenu(TolyIcon.icon_juejin,
-        'https://juejin.im/user/5b42c0656fb9a04fe727eb37'),
-    LinkIconMenu(TolyIcon.icon_item, 'http://toly1994.com'),
+    LinkIconMenu(TolyIcon.icon_github, "https://www.baid.com"),
+    LinkIconMenu(TolyIcon.icon_juejin, 'https://www.365me.cn'),
+    LinkIconMenu(TolyIcon.icon_item, 'https://www.365me.me'),
   ];
 
   Widget _buildIcons() {
