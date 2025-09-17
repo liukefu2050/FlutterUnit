@@ -18,7 +18,7 @@ class MobileEditor extends StatefulWidget {
 
 class _MobileEditorState extends State<MobileEditor> {
   TextEditingController ctrl = TextEditingController();
-  ArticleRepository _repository = HttpArticleRepository();
+  MqttRepository _repository = HttpMqttRepository();
   FocusNode titleFocusNode = FocusNode();
 
   @override
@@ -37,7 +37,7 @@ class _MobileEditorState extends State<MobileEditor> {
 
   @override
   Widget build(BuildContext context) {
-    ArtSysBloc bloc = context.watch<ArtSysBloc>();
+    MqttSysBloc bloc = context.watch<MqttSysBloc>();
 
     return Scaffold(
       backgroundColor: Color(0xfffafafa),
@@ -130,7 +130,7 @@ class _MobileEditorState extends State<MobileEditor> {
   void _titleFocusNode() {
     print("=====_titleFocusNode============");
     if (!titleFocusNode.hasFocus) {
-      ArtSysBloc bloc = context.read<ArtSysBloc>();
+      MqttSysBloc bloc = context.read<MqttSysBloc>();
       bloc.updateTitleV2();
     }
   }
@@ -140,7 +140,7 @@ class _MobileEditorState extends State<MobileEditor> {
       context: context,
       builder: (_) => PopBottomTip(
         onDelete: () async {
-          await context.read<ArtSysBloc>().delete();
+          await context.read<MqttSysBloc>().delete();
           Navigator.of(context).pop();
         },
         message: '当前文当更多操作',

@@ -10,7 +10,6 @@ import '../navigation/view/app_bloc_provider.dart';
 import 'start_repository.dart';
 import 'package:app_update/app_update.dart';
 import 'package:note/note.dart';
-import 'package:mqtt/mqtt.dart';
 
 export 'view/splash/Flutter_unit_splash.dart';
 export 'view/error/app_start_error.dart';
@@ -33,8 +32,6 @@ class FxApplication with FxStarter<AppConfig> {
       context.read<LikeWidgetBloc>().loadLikeData();
       context.read<CategoryBloc>().add(const EventLoadCategory());
       context.read<NewsBloc>().load();
-
-      context.read<MqttBloc>().load();
     }
   }
 

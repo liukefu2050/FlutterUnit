@@ -17,7 +17,7 @@ class MobileMqttPage extends StatefulWidget {
 }
 
 class _MobileArticlePageState extends State<MobileMqttPage> {
-  ArticleRepository _repository = HttpArticleRepository();
+  MqttRepository _repository = HttpMqttRepository();
 
   @override
   void initState() {

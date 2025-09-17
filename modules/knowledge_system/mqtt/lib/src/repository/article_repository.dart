@@ -7,7 +7,7 @@ import 'model/model.dart';
 
 typedef PaginateList<T> = ({List<T> list, int total});
 
-abstract class ArticleRepository {
+abstract class MqttRepository {
   Future<ApiRet<bool>> create(ArticleCreatePayload payload);
 
   Future<ApiRet<String>> open(int id);
@@ -31,8 +31,8 @@ abstract class ArticleRepository {
   Future<ApiRet<Hierarchy>> loadArticleTree();
 }
 
-class HttpArticleRepository implements ArticleRepository {
-  Host get host => NoteEnv().host;
+class HttpMqttRepository implements MqttRepository {
+  Host get host => MqttEnv().host;
 
   @override
   Future<ApiRet<bool>> create(ArticleCreatePayload payload) {

@@ -9,8 +9,11 @@ class MqttSysScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ArtSysBloc>(
-      create: (_) => ArtSysBloc()..loadFirstFrame(),
+    return BlocProvider<MqttSysBloc>(
+      create: (_) {
+        //print("✅ MqttSysBloc created, calling loadFirstFrame()");
+        return MqttSysBloc()..loadFirstFrame();
+      },
       child: child,
     );
   }

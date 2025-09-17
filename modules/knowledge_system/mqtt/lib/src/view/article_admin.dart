@@ -19,7 +19,7 @@ class MqttAdmin extends StatefulWidget {
 class _MqttAdminState extends State<MqttAdmin> {
   @override
   Widget build(BuildContext context) {
-    ArtSysBloc bloc = context.watch<ArtSysBloc>();
+    MqttSysBloc bloc = context.watch<MqttSysBloc>();
     ListStatus status = bloc.state.status;
     bool hasActive = bloc.state.active != null;
 

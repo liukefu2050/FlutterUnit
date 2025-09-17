@@ -10,7 +10,7 @@ class ArticleDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArticlePo? selected =
-        context.select((ArtSysBloc bloc) => bloc.state.active);
+        context.select((MqttSysBloc bloc) => bloc.state.active);
     if (selected == null) {
       return SizedBox();
     }
@@ -21,10 +21,10 @@ class ArticleDisplay extends StatelessWidget {
     }
     return TextField(
       style: TextStyle(fontSize: 14),
-      onChanged: (text) => context.read<ArtSysBloc>().write(text),
+      onChanged: (text) => context.read<MqttSysBloc>().write(text),
       maxLines: null,
       minLines: null,
-      controller: context.read<ArtSysBloc>().ctrl,
+      controller: context.read<MqttSysBloc>().ctrl,
       expands: true,
       decoration: const InputDecoration(
           border: InputBorder.none,

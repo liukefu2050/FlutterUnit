@@ -6,10 +6,10 @@ import 'package:mqtt/src/repository/model/article.dart';
 
 import '../repository/model/model.dart';
 
-class ArtSysBloc extends Cubit<ArtSysState> {
-  ArtSysBloc() : super(ArtSysState(articles: []));
+class MqttSysBloc extends Cubit<MqttSysState> {
+  MqttSysBloc() : super(MqttSysState(articles: []));
 
-  final ArticleRepository _repository = HttpArticleRepository();
+  final MqttRepository _repository = HttpMqttRepository();
 
   TextEditingController titleCtrl = TextEditingController();
   TextEditingController ctrl = TextEditingController();
@@ -20,7 +20,7 @@ class ArtSysBloc extends Cubit<ArtSysState> {
     }
     ApiRet<List<ArticlePo>> ret = await _repository.list(SizeFilter());
     if (ret.success) {
-      ArtSysState newState = state.copyWith(
+      MqttSysState newState = state.copyWith(
         articles: ret.data,
         status: SuccessStatus(ret.paginate?.total ?? 0),
       );
@@ -29,7 +29,7 @@ class ArtSysBloc extends Cubit<ArtSysState> {
       return;
     }
     print(ret.trace?.toString());
-    ArtSysState newState = state.copyWith(
+    MqttSysState newState = state.copyWith(
       status: FailedStatus(ret.trace?.error, ret.trace?.stack),
     );
     emit(newState);
@@ -129,23 +129,23 @@ class FailedStatus extends ListStatus {
   const FailedStatus(this.error, [this.trace]);
 }
 
-class ArtSysState {
+class MqttSysState {
   final List<ArticlePo> articles;
   final ArticlePo? active;
   final ListStatus status;
 
-  ArtSysState({
+  MqttSysState({
     required this.articles,
     this.active,
     this.status = const LoadingStatus(),
   });
 
-  ArtSysState copyWith({
+  MqttSysState copyWith({
     List<ArticlePo>? articles,
     ArticlePo? active,
     ListStatus? status,
   }) {
-    return ArtSysState(
+    return MqttSysState(
       articles: articles ?? this.articles,
       active: active ?? this.active,
       status: status ?? this.status,

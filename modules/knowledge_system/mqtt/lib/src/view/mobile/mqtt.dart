@@ -42,10 +42,12 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final ColorScheme colorScheme = theme.colorScheme;
-    ArtSysBloc bloc = context.watch<ArtSysBloc>();
+    MqttSysBloc bloc = context.watch<MqttSysBloc>();
     ListStatus status = bloc.state.status;
     List<ArticlePo> articles = bloc.state.articles;
     bool hasActive = bloc.state.active != null;
+    print('Event articles received: $articles');
+    print('State emitted: $status');
     return Scaffold(
       bottomNavigationBar: Container(
         height: 52,
@@ -57,7 +59,7 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,
         onPressed: () async {
-          ArtSysBloc bloc = context.read<ArtSysBloc>();
+          MqttSysBloc bloc = context.read<MqttSysBloc>();
           await bloc.newArticle();
           ArticlePo article = bloc.state.articles.first;
           bloc.select(article);
@@ -120,7 +122,7 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
   Widget _buildTitleText() {
     const TextStyle style =
         TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
-    const Text text = Text('匠心巧记555', style: style);
+    const Text text = Text('mqtt 列表', style: style);
     return const SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(left: 12.0, bottom: 8),
@@ -131,11 +133,11 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
 
   void _onTap(ArticlePo article) async {
     if (article.type == 1) {
-      ArtSysBloc bloc = context.read<ArtSysBloc>();
+      MqttSysBloc bloc = context.read<MqttSysBloc>();
       bloc.select(article);
       await Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
         return BlocProvider.value(
-          value: context.read<ArtSysBloc>(),
+          value: context.read<MqttSysBloc>(),
           child: MobileEditor(
             article: article,
           ),

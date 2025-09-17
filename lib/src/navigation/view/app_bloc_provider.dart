@@ -37,8 +37,6 @@ class _AppBlocProviderState extends State<AppBlocProvider> {
         BlocProvider<UserBloc>(create: (_) => UserBloc()),
         BlocProvider<NewsBloc>(create: (_) => NewsBloc()..initByCache()),
 
-        BlocProvider<MqttBloc>(create: (_) => MqttBloc()),
-
         BlocProvider<GalleryUnitBloc>(
             create: (_) => GalleryUnitBloc()..loadGalleryInfo()),
       ],

@@ -13,7 +13,9 @@ import 'package:path/path.dart' as path;
 import 'package:utils/utils.dart';
 import 'package:path/path.dart' as p;
 import 'bridge/unit_bridge.dart';
+import 'bridge/unit_bridge_mqtt.dart';
 import 'package:widget_module/widget_module.dart';
+import 'package:mqtt/mqtt.dart';
 
 class FlutterUnitStartRepo implements AppStartRepository<AppConfig> {
   const FlutterUnitStartRepo();
@@ -31,6 +33,7 @@ class FlutterUnitStartRepo implements AppStartRepository<AppConfig> {
 
     registerHttpClient();
     NoteEnv().attachBridge(UnitNoteBridge());
+    MqttEnv().attachBridge(UnitMqttBridge());
     if (!kAppEnv.isWeb) await initDb();
     await initWidgetStatistics(); // 加载统计数据
 

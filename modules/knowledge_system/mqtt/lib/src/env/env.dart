@@ -1,18 +1,18 @@
 import 'package:fx_dio/fx_dio.dart';
 
-class NoteEnv with NoteModuleBridge {
-  static NoteEnv? _instance;
+class MqttEnv with MqttModuleBridge {
+  static MqttEnv? _instance;
 
-  NoteEnv._();
+  MqttEnv._();
 
-  factory NoteEnv() {
-    _instance ??= NoteEnv._();
+  factory MqttEnv() {
+    _instance ??= MqttEnv._();
     return _instance!;
   }
 
-  NoteModuleBridge? _bridge;
+  MqttModuleBridge? _bridge;
 
-  void attachBridge(NoteModuleBridge bridge) {
+  void attachBridge(MqttModuleBridge bridge) {
     _bridge = bridge;
   }
 
@@ -20,6 +20,6 @@ class NoteEnv with NoteModuleBridge {
   Host get host => _bridge!.host;
 }
 
-mixin NoteModuleBridge {
+mixin MqttModuleBridge {
   Host get host;
 }
