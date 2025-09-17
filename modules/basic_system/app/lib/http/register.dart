@@ -9,6 +9,8 @@ void registerHttpClient() {
       .register(const ScienceHost(), repInterceptor: ScienceRepInterceptor());
   FxDio().register(const UnitHost());
 
+  FxDio().register(const MqttHost());
+
   FxDio().auth<ScienceHost>(ScienceAuth());
 }
 

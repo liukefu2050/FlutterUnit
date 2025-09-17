@@ -5,5 +5,5 @@ import 'package:app/app.dart';
 
 class UnitMqttBridge with MqttModuleBridge {
   @override
-  Host get host => FxDio()<ScienceHost>();
+  Host get host => FxDio()<MqttHost>();
 }

@@ -3,3 +3,4 @@ export 'flutter_unit/unit_host.dart';
 export 'science/science_host.dart';
 export 'science/science_rep_interceptor.dart';
 export 'register.dart';
+export 'science/mqtt_host.dart';

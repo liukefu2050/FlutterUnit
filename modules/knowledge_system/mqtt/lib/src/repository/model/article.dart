@@ -11,71 +11,104 @@ enum ArticleType {
 }
 
 class ArticlePo implements Po {
-  final String title;
-  final String? subtitle;
-  final String url;
-  final String? cover;
-  final int create;
-  final int update;
   final int id;
-  final int status;
-  final int type;
+  final String name;
+  final String sn;
+  final String ip;
+  final int port;
+  final int groupId;
+  final int centerId;
+  final int machineType;
+  final bool aiEnable;
+  final String aiIp;
+  final int aiPort;
+  final String liangcheng;
+  final String voltage;
+  final String dlStandby;
+  final String dlRunning;
+  final String remark;
+  final dynamic reserve;
 
   ArticlePo({
-    required this.title,
-    this.subtitle = '',
-    required this.url,
-    this.cover = '',
-    this.update = 0,
-    this.create = 0,
-    this.status = 0,
-    this.type = 0,
-    this.id = -1,
+    required this.id,
+    required this.name,
+    required this.sn,
+    required this.ip,
+    required this.port,
+    required this.groupId,
+    required this.centerId,
+    required this.machineType,
+    required this.aiEnable,
+    required this.aiIp,
+    required this.aiPort,
+    required this.liangcheng,
+    required this.voltage,
+    required this.dlStandby,
+    required this.dlRunning,
+    required this.remark,
+    this.reserve,
   });
 
-  String get updateDate {
-    return _noteTimeLong
-        .format(DateTime.fromMillisecondsSinceEpoch(update).add(offset));
-  }
-
-  String get createDate => _noteTimeShort
-      .format(DateTime.fromMillisecondsSinceEpoch(create).add(offset));
-
-  factory ArticlePo.fromApi(dynamic map) => ArticlePo(
-        id: map['article_id'] ?? 0,
-        title: map['title'] ?? '',
-        type: map['type'] ?? '',
-        status: map['status'] ?? '',
-        create: DateTime.parse(map['create_at']).millisecondsSinceEpoch,
-        update: DateTime.parse(map['update_at']).millisecondsSinceEpoch,
-        subtitle: map['subtitle'] ?? '',
-        url: map['url'] ?? '',
-        cover: map['cover'] ?? '',
+  factory ArticlePo.fromApi(Map<String, dynamic> map) => ArticlePo(
+        id: map['id'] ?? 0,
+        name: map['name'] ?? '',
+        sn: map['sn'] ?? '',
+        ip: map['ip'] ?? '',
+        port: map['port'] ?? 0,
+        groupId: map['groupid'] ?? 0,
+        centerId: map['centerid'] ?? 0,
+        machineType: map['machinetype'] ?? 0,
+        aiEnable: map['aienable'] ?? false,
+        aiIp: map['aiip'] ?? '',
+        aiPort: map['aiport'] ?? 0,
+        liangcheng: map['liangcheng'] ?? '',
+        voltage: map['voltage'] ?? '',
+        dlStandby: map['dlStandby'] ?? '',
+        dlRunning: map['dlRunning'] ?? '',
+        remark: map['remark'] ?? '',
+        reserve: map['reserve'],
       );
 
-  factory ArticlePo.fromCache(dynamic map) => ArticlePo(
-        id: map['article_id'] ?? 0,
-        title: map['title'] ?? '',
-        type: map['type'] ?? '',
-        status: map['status'] ?? '',
-        create: map['create_at'],
-        update: map['update'],
-        subtitle: map['subtitle'] ?? '',
-        url: map['url'] ?? '',
-        cover: map['cover'] ?? '',
+  factory ArticlePo.fromCache(Map<String, dynamic> map) => ArticlePo(
+        id: map['id'] ?? 0,
+        name: map['name'] ?? '',
+        sn: map['sn'] ?? '',
+        ip: map['ip'] ?? '',
+        port: map['port'] ?? 0,
+        groupId: map['groupid'] ?? 0,
+        centerId: map['centerid'] ?? 0,
+        machineType: map['machinetype'] ?? 0,
+        aiEnable: map['aienable'] ?? false,
+        aiIp: map['aiip'] ?? '',
+        aiPort: map['aiport'] ?? 0,
+        liangcheng: map['liangcheng'] ?? '',
+        voltage: map['voltage'] ?? '',
+        dlStandby: map['dlStandby'] ?? '',
+        dlRunning: map['dlRunning'] ?? '',
+        remark: map['remark'] ?? '',
+        reserve: map['reserve'],
       );
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      'article_id': id,
-      'title': title,
-      'type': type,
-      'status': status,
-      'create_at': create,
-      'update': update,
-      'url': url,
-      'cover': cover,
+      'id': id,
+      'name': name,
+      'sn': sn,
+      'ip': ip,
+      'port': port,
+      'groupid': groupId,
+      'centerid': centerId,
+      'machinetype': machineType,
+      'aienable': aiEnable,
+      'aiip': aiIp,
+      'aiport': aiPort,
+      'liangcheng': liangcheng,
+      'voltage': voltage,
+      'dlStandby': dlStandby,
+      'dlRunning': dlRunning,
+      'remark': remark,
+      'reserve': reserve,
     };
   }
 }

@@ -57,10 +57,10 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void select(ArticlePo article) {
-    if (article.type == 1) {
+    if (article.machineType == 1) {
       open(article.id);
     } else {}
-    titleCtrl.text = article.title;
+    titleCtrl.text = article.name;
     emit(state.copyWith(active: article));
   }
 
@@ -87,13 +87,13 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void updateTitle(ArticlePo article, String title) async {
-    if (title == article.title) return;
+    if (title == article.name) return;
     ApiRet<ArticlePo> ret = await _repository.update(
         article.id, ArticleUpdatePayload(title: title));
     if (ret.success) {
       open(article.id);
       loadFirstFrame();
-      titleCtrl.text = ret.data.title;
+      titleCtrl.text = ret.data.name;
     } else {
       print(ret.trace?.error);
     }

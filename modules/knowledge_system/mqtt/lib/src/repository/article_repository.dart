@@ -53,14 +53,18 @@ class HttpMqttRepository implements MqttRepository {
 
   @override
   Future<ApiRet<List<ArticlePo>>> list(SizeFilter filter) {
-    return host.get<List<ArticlePo>>(
-      '/article',
-      queryParameters: {
+    return host.post<List<ArticlePo>>(
+      '/config/report/queryMachinePage',
+      data: {
         'page': filter.page,
-        'page_size': filter.pageSize,
+        'limit': filter.pageSize,
       },
       convertor: (data) {
-        return data.map<ArticlePo>(ArticlePo.fromApi).toList();
+        final list = (data['data']['list'] as List)
+            .map((e) => ArticlePo.fromApi(e))
+            .toList();
+        print(list.toString());
+        return list;
       },
     );
   }
