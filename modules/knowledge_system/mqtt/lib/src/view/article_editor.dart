@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:tolyui/tolyui.dart';
 
 import '../repository/model/model.dart';
-
 
 class EditArticleDialog extends StatefulWidget {
   final ArticlePo? article;
@@ -31,11 +29,10 @@ class _EditArticleDialogState extends State<EditArticleDialog> {
   void initState() {
     super.initState();
     if (widget.article != null) {
-      _titleController = TextEditingController(text: widget.article!.title);
-      _subtitleController =
-          TextEditingController(text: widget.article!.subtitle);
-      _urlController = TextEditingController(text: widget.article!.url);
-      _coverController = TextEditingController(text: widget.article!.cover);
+      _titleController = TextEditingController(text: widget.article!.name);
+      _subtitleController = TextEditingController(text: widget.article!.sn);
+      _urlController = TextEditingController(text: widget.article!.remark);
+      _coverController = TextEditingController(text: widget.article!.remark);
       _columnController = TextEditingController();
     } else {
       _titleController = TextEditingController();
@@ -165,7 +162,7 @@ class _EditArticleDialogState extends State<EditArticleDialog> {
           onPressed: () {
             ArticleCreatePayload payload = ArticleCreatePayload(
               subtitle: _subtitleController.text,
-              title:  _titleController.text,
+              title: _titleController.text,
               url: _urlController.text,
               cover: _coverController.text,
               type: 1,

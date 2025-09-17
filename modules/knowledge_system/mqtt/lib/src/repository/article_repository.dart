@@ -60,11 +60,11 @@ class HttpMqttRepository implements MqttRepository {
         'limit': filter.pageSize,
       },
       convertor: (data) {
-        final list = (data['data']['list'] as List)
-            .map((e) => ArticlePo.fromApi(e))
+        print(data['data']['list'].toString());
+        final listData = data['data']?['list'] ?? [];
+        return (listData as List)
+            .map((e) => ArticlePo.fromApi(e as Map<String, dynamic>))
             .toList();
-        print(list.toString());
-        return list;
       },
     );
   }

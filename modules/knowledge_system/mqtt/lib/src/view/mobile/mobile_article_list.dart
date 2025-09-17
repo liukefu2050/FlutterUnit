@@ -73,13 +73,15 @@ class _MobileArticleItemState extends State<MobileArticleItem> {
               spacing: 6,
               children: [
                 Icon(
-                  widget.article.type == 1 ? Icons.event_note : Icons.wordpress,
+                  widget.article.machineType == 1
+                      ? Icons.event_note
+                      : Icons.wordpress,
                   size: 20,
                   color: Color(0xffa6aebd),
                 ),
                 Expanded(
                   child: Text(
-                    widget.article.title,
+                    widget.article.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -93,12 +95,12 @@ class _MobileArticleItemState extends State<MobileArticleItem> {
               children: [
                 Text(
                   style: TextStyle(fontSize: 12),
-                  widget.article.createDate,
+                  widget.article.groupId.toString(),
                 ),
                 Text(" → "),
                 Text(
                   style: TextStyle(fontSize: 12),
-                  widget.article.updateDate,
+                  widget.article.centerId.toString(),
                 )
               ],
             )

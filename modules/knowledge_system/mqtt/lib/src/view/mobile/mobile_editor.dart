@@ -60,7 +60,7 @@ class _MobileEditorState extends State<MobileEditor> {
                 spacing: 8,
                 children: [
                   Text(
-                    '${bloc.state.active?.updateDate}',
+                    '${bloc.state.active?.remark}',
                     style: TextStyle(
                         fontSize: 12,
                         color: Color(

@@ -28,7 +28,9 @@ class MqttSysBloc extends Cubit<MqttSysState> {
       _openCurrent();
       return;
     }
-    print(ret.trace?.toString());
+    print("❌ loadFirstFrame failed");
+    print(ret.trace?.error?.toString());
+    print(ret.trace?.stack?.toString());
     MqttSysState newState = state.copyWith(
       status: FailedStatus(ret.trace?.error, ret.trace?.stack),
     );

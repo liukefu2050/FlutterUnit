@@ -14,7 +14,7 @@ class ArticleDisplay extends StatelessWidget {
     if (selected == null) {
       return SizedBox();
     }
-    if (selected.type == ArticleType.net.index) {
+    if (selected.machineType == ArticleType.net.index) {
       return NetworkArticleDisplay(
         article: selected,
       );
@@ -55,15 +55,15 @@ class NetworkArticleDisplay extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              article.title,
+              article.name,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            if (article.subtitle != null)
+            if (article.sn != null)
               Text(
-                article.subtitle!,
+                article.sn!,
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
-            Image.network(article.cover ?? ''),
+            Image.network(article.remark ?? ''),
             ElevatedButton(
               onPressed: () {},
               child: Text('前往查看'),

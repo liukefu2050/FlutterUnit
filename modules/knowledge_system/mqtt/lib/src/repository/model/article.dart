@@ -19,9 +19,9 @@ class ArticlePo implements Po {
   final int groupId;
   final int centerId;
   final int machineType;
-  final bool aiEnable;
+  final String aiEnable;
   final String aiIp;
-  final int aiPort;
+  final String aiPort;
   final String liangcheng;
   final String voltage;
   final String dlStandby;
@@ -50,15 +50,15 @@ class ArticlePo implements Po {
   });
 
   factory ArticlePo.fromApi(Map<String, dynamic> map) => ArticlePo(
-        id: map['id'] ?? 0,
+        id: int.tryParse(map['id']) ?? 0,
         name: map['name'] ?? '',
         sn: map['sn'] ?? '',
         ip: map['ip'] ?? '',
-        port: map['port'] ?? 0,
-        groupId: map['groupid'] ?? 0,
-        centerId: map['centerid'] ?? 0,
-        machineType: map['machinetype'] ?? 0,
-        aiEnable: map['aienable'] ?? false,
+        port: int.tryParse(map['port']) ?? 0,
+        groupId: int.tryParse(map['groupid']) ?? 0,
+        centerId: int.tryParse(map['centerid']) ?? 0,
+        machineType: int.tryParse(map['machinetype']) ?? 0,
+        aiEnable: map['aienable'] ?? '',
         aiIp: map['aiip'] ?? '',
         aiPort: map['aiport'] ?? 0,
         liangcheng: map['liangcheng'] ?? '',

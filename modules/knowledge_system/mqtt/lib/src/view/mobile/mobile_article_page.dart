@@ -61,7 +61,7 @@ class _MobileArticlePageState extends State<MobileMqttPage> {
           articles: articles,
           activeId: active?.id ?? -1,
           onTap: (ArticlePo article) {
-            if (article.type == 1) {
+            if (article.machineType == 1) {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
                 return MobileEditor(
                   article: article,
@@ -69,7 +69,7 @@ class _MobileArticlePageState extends State<MobileMqttPage> {
               }));
               // _loadArticleContent(article.id);
             } else {}
-            titleCtrl.text = article.title;
+            titleCtrl.text = article.name;
 
             setState(() {
               active = article;

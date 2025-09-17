@@ -75,7 +75,9 @@ class _ArticleItemState extends State<ArticleItem> {
             spacing: 6,
             children: [
               Icon(
-                widget.article.type == 1 ? Icons.event_note : Icons.wordpress,
+                widget.article.machineType == 1
+                    ? Icons.event_note
+                    : Icons.wordpress,
                 size: 20,
                 color: widget.active ? Color(0xff5b89fe) : Color(0xffa6aebd),
               ),
@@ -104,7 +106,7 @@ class _ArticleItemState extends State<ArticleItem> {
                         controller: _ctrl,
                       )
                     : Text(
-                        widget.article.title,
+                        widget.article.name,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -129,7 +131,7 @@ class _ArticleItemState extends State<ArticleItem> {
                       }
 
                       widget.onTap(widget.article);
-                      _ctrl = TextEditingController(text: widget.article.title);
+                      _ctrl = TextEditingController(text: widget.article.name);
                       _focusNode = FocusNode();
                       Future.delayed(Duration(milliseconds: 20)).then((_) {
                         _focusNode!.requestFocus();
