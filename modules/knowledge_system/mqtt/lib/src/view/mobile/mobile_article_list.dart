@@ -6,7 +6,7 @@ import 'package:tolyui/tolyui.dart';
 class MobileArticleList extends StatelessWidget {
   final List<ArticlePo> articles;
   final ValueChanged<ArticlePo> onTap;
-  final int activeId;
+  final String activeId;
   final OnUpdateTitle onUpdateTitle;
 
   const MobileArticleList(
@@ -125,9 +125,9 @@ class _MobileArticleItemState extends State<MobileArticleItem> {
   }
 
   void _updateTitle() {
-    String value = _ctrl?.text ?? '';
-    if (value.isEmpty) return;
-    widget.onUpdateTitle(widget.article.id, _ctrl?.text ?? '');
+    //String value = _ctrl?.text ?? '';
+    //if (value.isEmpty) return;
+    //widget.onUpdateTitle(widget.article.id, _ctrl?.text ?? '');
   }
 
   TextEditingController? _ctrl;

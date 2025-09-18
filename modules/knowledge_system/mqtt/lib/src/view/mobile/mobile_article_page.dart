@@ -59,7 +59,7 @@ class _MobileArticlePageState extends State<MobileMqttPage> {
       TaskLoading() => const CupertinoActivityIndicator(),
       TaskSuccess() => MobileArticleList(
           articles: articles,
-          activeId: active?.id ?? -1,
+          activeId: active?.id ?? "",
           onTap: (ArticlePo article) {
             if (article.machineType == 1) {
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {

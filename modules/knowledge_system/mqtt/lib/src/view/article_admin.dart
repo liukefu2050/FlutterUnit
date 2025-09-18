@@ -27,7 +27,7 @@ class _MqttAdminState extends State<MqttAdmin> {
       LoadingStatus() => const CupertinoActivityIndicator(),
       SuccessStatus() => ArticleList(
           articles: bloc.state.articles,
-          activeId: bloc.state.active?.id ?? -1,
+          activeId: bloc.state.active?.id ?? "",
           onTap: bloc.select,
           onUpdateTitle: bloc.updateTitle,
         ),

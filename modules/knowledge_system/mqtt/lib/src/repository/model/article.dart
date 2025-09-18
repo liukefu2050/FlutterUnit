@@ -11,14 +11,14 @@ enum ArticleType {
 }
 
 class ArticlePo implements Po {
-  final int id;
+  final String id;
   final String name;
   final String sn;
   final String ip;
-  final int port;
-  final int groupId;
-  final int centerId;
-  final int machineType;
+  final String port;
+  final String groupId;
+  final String centerId;
+  final String machineType;
   final String aiEnable;
   final String aiIp;
   final String aiPort;
@@ -50,35 +50,35 @@ class ArticlePo implements Po {
   });
 
   factory ArticlePo.fromApi(Map<String, dynamic> map) => ArticlePo(
-        id: int.tryParse(map['id']) ?? 0,
-        name: map['name'] ?? '',
-        sn: map['sn'] ?? '',
-        ip: map['ip'] ?? '',
-        port: int.tryParse(map['port']) ?? 0,
-        groupId: int.tryParse(map['groupid']) ?? 0,
-        centerId: int.tryParse(map['centerid']) ?? 0,
-        machineType: int.tryParse(map['machinetype']) ?? 0,
-        aiEnable: map['aienable'] ?? '',
-        aiIp: map['aiip'] ?? '',
-        aiPort: map['aiport'] ?? 0,
+        id: map['id']?.toString() ?? '',
+        name: map['name']?.toString() ?? '',
+        sn: map['sn']?.toString() ?? '',
+        ip: map['ip']?.toString() ?? '',
+        port: map['port']?.toString() ?? '',
+        groupId: map['groupId']?.toString() ?? '',
+        centerId: map['centerId']?.toString() ?? '',
+        machineType: map['machineType']?.toString() ?? '',
+        aiEnable: map['aienable']?.toString() ?? '',
+        aiIp: map['aiip']?.toString() ?? '',
+        aiPort: map['aiport']?.toString() ?? '',
         liangcheng: map['liangcheng'] ?? '',
-        voltage: map['voltage'] ?? '',
-        dlStandby: map['dlStandby'] ?? '',
-        dlRunning: map['dlRunning'] ?? '',
-        remark: map['remark'] ?? '',
-        reserve: map['reserve'],
+        voltage: map['voltage']?.toString() ?? '',
+        dlStandby: map['dlStandby']?.toString() ?? '',
+        dlRunning: map['dlRunning']?.toString() ?? '',
+        remark: map['remark']?.toString() ?? '',
+        reserve: map['reserve']?.toString() ?? '',
       );
 
   factory ArticlePo.fromCache(Map<String, dynamic> map) => ArticlePo(
-        id: map['id'] ?? 0,
+        id: map['id'] ?? '',
         name: map['name'] ?? '',
         sn: map['sn'] ?? '',
         ip: map['ip'] ?? '',
-        port: map['port'] ?? 0,
-        groupId: map['groupid'] ?? 0,
-        centerId: map['centerid'] ?? 0,
-        machineType: map['machinetype'] ?? 0,
-        aiEnable: map['aienable'] ?? false,
+        port: map['port'] ?? '',
+        groupId: map['groupId'] ?? '',
+        centerId: map['centerId'] ?? '',
+        machineType: map['machineType'] ?? '',
+        aiEnable: map['aienable'] ?? '',
         aiIp: map['aiip'] ?? '',
         aiPort: map['aiport'] ?? 0,
         liangcheng: map['liangcheng'] ?? '',

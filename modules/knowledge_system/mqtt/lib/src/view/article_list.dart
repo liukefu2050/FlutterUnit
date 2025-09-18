@@ -6,7 +6,7 @@ import 'package:tolyui/tolyui.dart';
 class ArticleList extends StatelessWidget {
   final List<ArticlePo> articles;
   final ValueChanged<ArticlePo> onTap;
-  final int activeId;
+  final String activeId;
   final OnUpdateTitle onUpdateTitle;
 
   const ArticleList(

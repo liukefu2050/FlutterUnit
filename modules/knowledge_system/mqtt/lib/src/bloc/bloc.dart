@@ -38,7 +38,7 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void _openCurrent() {
-    int? id = state.active?.id;
+    String? id = state.active?.id;
     if (id != null) {
       open(id);
     }
@@ -64,7 +64,7 @@ class MqttSysBloc extends Cubit<MqttSysState> {
     emit(state.copyWith(active: article));
   }
 
-  void open(int id) async {
+  void open(String id) async {
     ApiRet<String> ret = await _repository.open(id);
     if (ret.success) {
       ctrl.text = ret.data;
@@ -72,10 +72,10 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void write(String content) async {
-    int? id = state.active?.id;
+    /* String? id = state.active?.id;
     if (id != null) {
       ApiRet<bool> ret = await _repository.write(id, content);
-    }
+    } */
   }
 
   void updateTitleV2() {
@@ -87,7 +87,7 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void updateTitle(ArticlePo article, String title) async {
-    if (title == article.name) return;
+    /* if (title == article.name) return;
     ApiRet<ArticlePo> ret = await _repository.update(
         article.id, ArticleUpdatePayload(title: title));
     if (ret.success) {
@@ -96,15 +96,15 @@ class MqttSysBloc extends Cubit<MqttSysState> {
       titleCtrl.text = ret.data.name;
     } else {
       print(ret.trace?.error);
-    }
+    } */
   }
 
   Future<void> delete() async {
-    int? id = state.active?.id;
+    /* int? id = state.active?.id;
     if (id != null) {
       ApiRet<bool> ret = await _repository.delete(id);
       await loadFirstFrame();
-    }
+    } */
   }
 }
 

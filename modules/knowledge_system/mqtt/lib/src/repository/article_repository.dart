@@ -10,7 +10,7 @@ typedef PaginateList<T> = ({List<T> list, int total});
 abstract class MqttRepository {
   Future<ApiRet<bool>> create(ArticleCreatePayload payload);
 
-  Future<ApiRet<String>> open(int id);
+  Future<ApiRet<String>> open(String id);
 
   Future<ApiRet<bool>> write(int id, String content);
 
@@ -70,7 +70,7 @@ class HttpMqttRepository implements MqttRepository {
   }
 
   @override
-  Future<ApiRet<String>> open(int id) {
+  Future<ApiRet<String>> open(String id) {
     return host.post(
       '/config/report/mqttById',
       data: {
