@@ -59,7 +59,7 @@ class _MqttAdminState extends State<MqttAdmin> {
                           color: Theme.of(context).primaryColor,
                         ),
                         Text(
-                          '匠心巧记11',
+                          '设备新建',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color(0xff242a39)),
@@ -155,76 +155,8 @@ class _MqttAdminState extends State<MqttAdmin> {
               Expanded(child: ArticleDisplay()),
             ],
           ))
-          // Expanded(
-          //   child: Column(
-          //     children: [
-          //       Container(
-          //         height: 52,
-          //         child: Padding(
-          //           padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          //           child: Row(
-          //             children: [
-          //               Spacer(),
-          //               Button(onPressed: () => showAddDialog(context)),
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //       Expanded(child: table),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: TolyPagination(
-          //           pageSize: 20,
-          //           total: (total*1.0),
-          //           initIndex: currentIndex,
-          //           onPageChanged: _onPageChanged,
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
         ],
       ),
-    );
-  }
-
-  // void _onPageChanged(int value) {
-  //   queryArticle(value);
-  // }
-
-  // Future<void> queryArticle(int page) async {
-  //   setState(() {
-  //     status = const TaskLoading();
-  //   });
-  //   ApiRet<PaginateList<ArticlePo>> ret =
-  //       await _repository.list(SizeFilter(page: page));
-  //   if (ret.success) {
-  //     articles = ret.data.list;
-  //     total = ret.data.total;
-  //     setState(() {
-  //       status = const TaskSuccess();
-  //     });
-  //   } else {
-  //     status = TaskFailed(ret.trace);
-  //     setState(() {});
-  //   }
-  // }
-
-  void showAddDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return EditArticleDialog(
-          onCreate: (payload) async {
-            // 在这里处理更新后的文章
-            // ApiRet<bool> ret = await _repository.create(payload);
-            // if (ret.success) {
-            //   currentIndex = 1;
-            //   queryArticle(currentIndex);
-            // }
-          },
-        );
-      },
     );
   }
 }

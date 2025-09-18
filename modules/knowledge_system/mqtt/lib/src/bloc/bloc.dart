@@ -59,9 +59,7 @@ class MqttSysBloc extends Cubit<MqttSysState> {
   }
 
   void select(ArticlePo article) {
-    if (article.machineType == 1) {
-      open(article.id);
-    } else {}
+    open(article.id);
     titleCtrl.text = article.name;
     emit(state.copyWith(active: article));
   }

@@ -94,7 +94,7 @@ class _MobileArticlePageState extends State<MobileMqttPage> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Text('匠心巧记333'),
+        title: Text('设备列表'),
       ),
       body: body,
     );

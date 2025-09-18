@@ -71,9 +71,15 @@ class HttpMqttRepository implements MqttRepository {
 
   @override
   Future<ApiRet<String>> open(int id) {
-    return host.get(
-      '/article/open/$id',
-      convertor: (rep) => rep,
+    return host.post(
+      '/config/report/mqttById',
+      data: {
+        'id': id,
+      },
+      convertor: (rep) {
+        print(rep['data'].toString());
+        return rep;
+      },
     );
   }
 

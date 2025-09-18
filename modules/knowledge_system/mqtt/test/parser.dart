@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-main(){
+main() {
   // 示例 JSON 字符串
   final jsonString = '''
   {
@@ -8,26 +8,11 @@ main(){
     "msg": "请求成功!",
     "data": {
       "cate_id": 1,
-      "name": "匠心空间",
+      "name": "设备列表",
       "cate_type": 0,
       "priority": 0,
       "children": [
-        {
-          "cate_id": 2,
-          "name": "全部笔记",
-          "children": [
-            {"cate_id":4, "name":"我的随笔"},
-            {"cate_id":5, "name":"编程技术"}
-          ]
-        },
-        {
-          "cate_id": 3,
-          "name": "网络博文",
-          "children": [
-            {"cate_id":6, "name":"掘金文章"},
-            {"cate_id":7, "name":"微信公众号"}
-          ]
-        }
+       
       ]
     }
   }
@@ -60,8 +45,8 @@ class Category {
       cateType: json['cate_type'] as int? ?? 0,
       priority: json['priority'] as int? ?? 0,
       children: (json['children'] as List<dynamic>?)
-          ?.map((child) => Category.fromJson(child))
-          .toList() ??
+              ?.map((child) => Category.fromJson(child))
+              .toList() ??
           [],
     );
   }

@@ -40,14 +40,9 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
     MqttSysBloc bloc = context.watch<MqttSysBloc>();
-    ListStatus status = bloc.state.status;
     List<ArticlePo> articles = bloc.state.articles;
-    bool hasActive = bloc.state.active != null;
-    print('Event articles received: $articles');
-    print('State emitted: $status');
+
     return Scaffold(
       bottomNavigationBar: Container(
         height: 52,
@@ -103,7 +98,7 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
     const Icon icon = Icon(Icons.more_vert);
     const TextStyle style =
         TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
-    const Text text = Text('匠心巧记444', style: style);
+    const Text text = Text('设备列表', style: style);
     Widget action = IconButton(onPressed: () {}, icon: icon);
     return SliverLayoutBuilder(builder: (_, scs) {
       double factor = (scs.scrollOffset / kToolbarHeight).clamp(0, 1);
@@ -122,7 +117,7 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
   Widget _buildTitleText() {
     const TextStyle style =
         TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
-    const Text text = Text('mqtt 列表', style: style);
+    const Text text = Text('设备列表', style: style);
     return const SliverToBoxAdapter(
       child: Padding(
         padding: EdgeInsets.only(left: 12.0, bottom: 8),

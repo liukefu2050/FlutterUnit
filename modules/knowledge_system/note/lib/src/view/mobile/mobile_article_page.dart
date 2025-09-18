@@ -94,7 +94,7 @@ class _MobileArticlePageState extends State<MobileArticlePage> {
         child: Icon(Icons.add),
       ),
       appBar: AppBar(
-        title: Text('匠心巧记'),
+        title: Text('设备列表'),
       ),
       body: body,
     );
