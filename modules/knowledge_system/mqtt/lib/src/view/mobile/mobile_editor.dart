@@ -7,6 +7,8 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 import '../../repository/model/model.dart';
 import '../../repository/article_repository.dart';
 
+import 'dart:convert';
+
 class MobileEditor extends StatefulWidget {
   final ArticlePo article;
 
@@ -19,7 +21,8 @@ class MobileEditor extends StatefulWidget {
 class _MobileEditorState extends State<MobileEditor> {
   // MQTT 客户端
   late MqttServerClient client;
-  String mqttMessage = "";
+  ArticlePo? mqttArticle;
+  String? mqttMessage = "";
 
   // 写死配置
   final String broker = "192.168.29.86";
@@ -58,9 +61,16 @@ class _MobileEditorState extends State<MobileEditor> {
       final pt =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       debugPrint('收到消息: $pt');
-      setState(() {
-        mqttMessage = pt; // 更新页面数据
-      });
+      if (pt.isEmpty) return;
+      try {
+        final data = jsonDecode(pt) as Map<String, dynamic>;
+        setState(() {
+          mqttMessage = pt;
+          mqttArticle = ArticlePo.fromApi(data); // 直接转成 ArticlePo
+        });
+      } catch (e) {
+        debugPrint("⚠️ JSON 解析失败: $e");
+      }
     });
   }
 
@@ -72,6 +82,8 @@ class _MobileEditorState extends State<MobileEditor> {
 
   @override
   Widget build(BuildContext context) {
+    final article = mqttArticle ?? widget.article; // 👈 优先mqtt数据
+
     return Scaffold(
       backgroundColor: const Color(0xfffafafa),
       appBar: AppBar(
@@ -89,16 +101,15 @@ class _MobileEditorState extends State<MobileEditor> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _buildDetailRow('名称', widget.article.name),
-          _buildDetailRow('sn', widget.article.sn),
-          _buildDetailRow('ip', widget.article.ip),
-          _buildDetailRow('port', widget.article.port.toString()),
-          _buildDetailRow('machineType', widget.article.machineType.toString()),
-          _buildDetailRow('aiEnable', widget.article.aiEnable.toString()),
-          _buildDetailRow('dlRunning', widget.article.dlRunning.toString()),
+          _buildDetailRow('名称', article.name),
+          _buildDetailRow('sn', article.sn),
+          _buildDetailRow('ip', article.ip),
+          _buildDetailRow('port', article.port.toString()),
+          _buildDetailRow('machineType', article.machineType.toString()),
+          _buildDetailRow('aiEnable', article.aiEnable.toString()),
+          _buildDetailRow('dlRunning', article.dlRunning.toString()),
           const Divider(),
-          _buildDetailRow(
-              '最新MQTT数据', mqttMessage.isEmpty ? "等待消息..." : mqttMessage),
+          _buildDetailRow('最新MQTT数据', mqttMessage ?? "等待消息..."),
         ],
       ),
     );
