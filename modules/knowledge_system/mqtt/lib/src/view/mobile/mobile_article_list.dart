@@ -93,17 +93,31 @@ class _MobileArticleItemState extends State<MobileArticleItem> {
             ),
             Row(
               children: [
+                Text(" sn: "),
                 Text(
                   style: TextStyle(fontSize: 12),
-                  widget.article.groupId.toString(),
-                ),
-                Text(" → "),
-                Text(
-                  style: TextStyle(fontSize: 12),
-                  widget.article.centerId.toString(),
+                  widget.article.sn,
                 )
               ],
-            )
+            ),
+            Row(
+              children: [
+                Text(" ip: "),
+                Text(
+                  style: TextStyle(fontSize: 12),
+                  widget.article.ip,
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Text(" port: "),
+                Text(
+                  style: TextStyle(fontSize: 12),
+                  widget.article.port.toString(),
+                )
+              ],
+            ),
           ],
         ),
       ),

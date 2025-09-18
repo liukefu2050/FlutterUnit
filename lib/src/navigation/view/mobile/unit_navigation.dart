@@ -96,6 +96,8 @@ class _UnitPhoneNavigationState extends State<UnitPhoneNavigation> {
   // 点击底部按钮事件，切换页面
   void _onTapBottomNav(int index) {
     _controller.jumpToPage(index);
+    print("==============_onTapBottomNav===============");
+    print(_activeTab.value.toString());
     _activeTab.value = AppTab.values[index];
     if (index == 3) {
       context.read<LikeWidgetBloc>().loadLikeData();
