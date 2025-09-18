@@ -127,19 +127,20 @@ class _PinnedHeaderSliverNode2State extends State<PinnedHeaderSliverNode2> {
   }
 
   void _onTap(ArticlePo article) async {
-    if (article.machineType == 1) {
-      MqttSysBloc bloc = context.read<MqttSysBloc>();
-      bloc.select(article);
-      await Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-        return BlocProvider.value(
-          value: context.read<MqttSysBloc>(),
-          child: MobileEditor(
-            article: article,
-          ),
-        );
-      }));
-      // _loadArticleContent(article.id);
-    } else {}
+    //if (article.machineType == 1) {
+    // _loadArticleContent(article.id);
+    //} else {}
+
+    MqttSysBloc bloc = context.read<MqttSysBloc>();
+    bloc.select(article);
+    await Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+      return BlocProvider.value(
+        value: context.read<MqttSysBloc>(),
+        child: MobileEditor(
+          article: article,
+        ),
+      );
+    }));
   }
 
   onUpdateTitle(int id, String title) {}
