@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fx_dio/fx_dio.dart';
-import 'package:mqtt/mqtt.dart';
+import 'package:mqtt_client/mqtt_client.dart';
+import 'package:mqtt_client/mqtt_server_client.dart';
 
-import '../../repository/article_repository.dart';
 import '../../repository/model/model.dart';
+import '../../repository/article_repository.dart';
 
 class MobileEditor extends StatefulWidget {
   final ArticlePo article;
@@ -17,68 +17,74 @@ class MobileEditor extends StatefulWidget {
 }
 
 class _MobileEditorState extends State<MobileEditor> {
-  TextEditingController ctrl = TextEditingController();
-  MqttRepository _repository = HttpMqttRepository();
-  //FocusNode titleFocusNode = FocusNode();
+  // MQTT 客户端
+  late MqttServerClient client;
+  String mqttMessage = "";
+
+  // 写死配置
+  final String broker = "192.168.29.86";
+  final int port = 1883;
+  final String topic = "topic1";
+  final String clientId =
+      "flutter_client_${DateTime.now().millisecondsSinceEpoch}";
 
   @override
   void initState() {
     super.initState();
-    // _loadArticleContent(widget.article.id);
-    //titleFocusNode.addListener(_titleFocusNode);
+    _connectMqtt();
   }
 
-  // void _loadArticleContent(int id) async {
-  //   ApiRet<String> ret = await _repository.open(id);
-  //   if (ret.success) {
-  //     ctrl.text = ret.data;
-  //   }
-  // }
+  Future<void> _connectMqtt() async {
+    client = MqttServerClient(broker, clientId);
+    client.port = port;
+    client.logging(on: true);
+    client.keepAlivePeriod = 20;
+    client.onConnected = () => debugPrint('MQTT 已连接');
+    client.onDisconnected = () => debugPrint('MQTT 已断开');
+    client.onSubscribed = (t) => debugPrint('已订阅: $t');
+
+    try {
+      await client.connect();
+    } catch (e) {
+      debugPrint("MQTT 连接失败: $e");
+      client.disconnect();
+      return;
+    }
+
+    client.subscribe(topic, MqttQos.atMostOnce);
+
+    client.updates?.listen((messages) {
+      final recMess = messages[0].payload as MqttPublishMessage;
+      final pt =
+          MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      debugPrint('收到消息: $pt');
+      setState(() {
+        mqttMessage = pt; // 更新页面数据
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    client.disconnect();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    MqttSysBloc bloc = context.watch<MqttSysBloc>();
-
     return Scaffold(
-      backgroundColor: Color(0xfffafafa),
+      backgroundColor: const Color(0xfffafafa),
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
-        backgroundColor: Color(0xfffafafa),
-        // title: Text(widget.article.title),
+        backgroundColor: const Color(0xfffafafa),
+        title: Text(widget.article.name),
         actions: [
           IconButton(
               onPressed: () {
                 showBottomTip(context);
               },
-              icon: Icon(Icons.more_vert))
+              icon: const Icon(Icons.more_vert))
         ],
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(32),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 4.0, left: 18),
-              child: Row(
-                spacing: 8,
-                children: [
-                  Text(
-                    '${bloc.state.active?.remark}',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(
-                          0xffadadad,
-                        )),
-                  ),
-                  SizedBox(height: 14, child: VerticalDivider()),
-                  Text(
-                    'ID: ${widget.article.id}',
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Color(
-                          0xffadadad,
-                        )),
-                  ),
-                ],
-              ),
-            )),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -90,7 +96,9 @@ class _MobileEditorState extends State<MobileEditor> {
           _buildDetailRow('machineType', widget.article.machineType.toString()),
           _buildDetailRow('aiEnable', widget.article.aiEnable.toString()),
           _buildDetailRow('dlRunning', widget.article.dlRunning.toString()),
-          _buildDetailRow('备注', bloc.state.active?.remark ?? ''),
+          const Divider(),
+          _buildDetailRow(
+              '最新MQTT数据', mqttMessage.isEmpty ? "等待消息..." : mqttMessage),
         ],
       ),
     );
@@ -103,7 +111,7 @@ class _MobileEditorState extends State<MobileEditor> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-              width: 80,
+              width: 100,
               child: Text(
                 '$label:',
                 style:
@@ -124,7 +132,6 @@ class _MobileEditorState extends State<MobileEditor> {
       context: context,
       builder: (_) => PopBottomTip(
         onDelete: () async {
-          await context.read<MqttSysBloc>().delete();
           Navigator.of(context).pop();
         },
         message: '更多操作',
@@ -132,8 +139,6 @@ class _MobileEditorState extends State<MobileEditor> {
       ),
     );
   }
-
-  // end
 }
 
 class PopBottomTip extends StatelessWidget {
@@ -174,7 +179,7 @@ class PopBottomTip extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.2)))),
                   child: Text(
                     message,
-                    style: TextStyle(color: Color(0xff8f8f8f)),
+                    style: const TextStyle(color: Color(0xff8f8f8f)),
                   )),
               InkWell(
                 splashColor: Colors.white,
@@ -187,11 +192,12 @@ class PopBottomTip extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       deleteText,
-                      style: TextStyle(color: Color(0xfff14835), fontSize: 16),
+                      style: const TextStyle(
+                          color: Color(0xfff14835), fontSize: 16),
                     )),
               ),
               Container(
-                color: Color(0xfff2f3f5),
+                color: const Color(0xfff2f3f5),
                 height: 8,
               ),
               InkWell(
@@ -200,7 +206,7 @@ class PopBottomTip extends StatelessWidget {
                 child: Container(
                     height: 56,
                     alignment: Alignment.center,
-                    child: Text(
+                    child: const Text(
                       '取消',
                       style: TextStyle(fontSize: 16),
                     )),

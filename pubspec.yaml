@@ -80,6 +80,7 @@ dependencies:
   image: ^4.0.17 # 图像处理
   equatable: ^2.0.5 # 相等辅助
   uuid: ^4.5.1
+  mqtt_client: ^10.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
